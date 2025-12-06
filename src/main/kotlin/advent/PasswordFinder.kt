@@ -12,7 +12,7 @@ class PasswordFinder {
             val number = line.substring(1).toInt()
 
             var increase = if (direction == 'L') current - number else current + number
-            while (increase < 0 || increase > 99) {
+            while (increase !in 0..99) {
                 if (increase < 0) {
                     increase += 100
                 } else {
@@ -38,23 +38,26 @@ class PasswordFinder {
 
             var increase = if (direction == 'L') -number else number
 
-            while (increase < -99 || increase > 99) {
-                if (increase < 99) {
+            while (increase < -100 || increase > 100) {
+                if (increase < 100) {
                     increase += 100
                 } else {
                     increase -= 100
                 }
                 nrOfZeros++
             }
-            val res = current + increase
+            val res = (if(current==0 && direction=='L' && increase!=0) 100 else current) + increase
             if(res<0) {
                 current = res + 100;
                 nrOfZeros++
             } else if (res>99) {
                 current = res%100
                 nrOfZeros++
-            } else if (res == 0) {
-                nrOfZeros++
+            } else {
+                current = res%100
+                if (current == 0) {
+                    nrOfZeros++
+                }
             }
         }
 

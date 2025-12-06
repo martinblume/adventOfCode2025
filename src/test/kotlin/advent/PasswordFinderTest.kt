@@ -27,6 +27,14 @@ class PasswordFinderTest {
         assertEquals(2, passwordFinder.findPassword2(listOf("L51", "L100")))
         assertEquals(2, passwordFinder.findPassword2(listOf("L51", "R100")))
         assertEquals(3, passwordFinder.findPassword2(listOf("L51", "R101")))
+        assertEquals(21, passwordFinder.findPassword2(listOf("R1050", "R1000")))
+        assertEquals(8, passwordFinder.findPassword2(listOf("L50", "R300", "L200", "R1", "L101")))
+        assertEquals(
+            6,
+            passwordFinder.findPassword2(
+                this.javaClass.getResourceAsStream("/01/testInput.txt")!!.bufferedReader().readLines()
+            )
+        )
         val lines = this.javaClass.getResourceAsStream("/01/input.txt")!!.bufferedReader().readLines()
         assertEquals(5616, passwordFinder.findPassword2(lines))
     }
