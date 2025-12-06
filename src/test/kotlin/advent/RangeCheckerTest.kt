@@ -14,6 +14,32 @@ class RangeCheckerTest {
         assertEquals(3, rangeChecker.countNumbersInRange(fileToRanges("/05/input.txt")))
     }
 
+    @Test
+    fun testInRange2() {
+        assertEquals(BigInteger.valueOf(14), rangeChecker.countNumbersInRange2(fileToRanges2("/05/testInput2.txt")))
+        assertEquals(BigInteger.valueOf(30), rangeChecker.countNumbersInRange2(fileToRanges2("/05/testInput3.txt")))
+        assertEquals(BigInteger.valueOf(14), rangeChecker.countNumbersInRange2(fileToRanges2("/05/testInput4.txt")))
+        assertEquals(BigInteger.valueOf(336790092076620), rangeChecker.countNumbersInRange2(fileToRanges2("/05/input.txt")))
+    }
+
+    private fun fileToRanges2(fileName: String): List<Pair<BigInteger, BigInteger>> {
+        val lines = this.javaClass.getResourceAsStream(fileName)!!.bufferedReader().readLines()
+        val ranges = mutableListOf<Pair<BigInteger, BigInteger>>()
+        for (i in 0..<lines.size) {
+            val line = lines[i]
+            if (line != "") {
+                val numbers = line.split("-")
+                val left = numbers[0].toBigInteger()
+                val right = numbers[1].toBigInteger()
+                ranges.add(Pair(left, right))
+            } else {
+                break
+            }
+        }
+       return ranges
+    }
+
+
     private fun fileToRanges(fileName: String): Pair<List<BigInteger>, List<Pair<BigInteger, BigInteger>>> {
         val lines = this.javaClass.getResourceAsStream(fileName)!!.bufferedReader().readLines()
         val ranges = mutableListOf<Pair<BigInteger, BigInteger>>()
