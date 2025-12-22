@@ -61,7 +61,7 @@ class MathSolver {
                     val constructed = problem.constructedNumbers[k].plus(
                         digit.toString().toInt() * Math.pow(
                             10.toDouble(),
-                            problem.hightesNumberLength - 1 - l.toDouble()
+                            problem.hightesNumberLength - 1 - 1.toDouble()
                         )
                     )
                     problem.constructedNumbers.set(
